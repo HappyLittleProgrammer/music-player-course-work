@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace MusicPlayerCourseWork
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            axWindowsMediaPlayer1.URL = "https://www.youtube.com/watch?v=HxC6QuQP6D";
-
         }
     }
 }
