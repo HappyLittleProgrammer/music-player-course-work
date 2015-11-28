@@ -1,6 +1,6 @@
 ﻿namespace MusicPlayerCourseWork
 {
-    partial class Form1
+    partial class LogRegMain
     {
         /// <summary>
         /// Required designer variable.
@@ -35,41 +35,44 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(90, 105);
+            this.button2.Location = new System.Drawing.Point(53, 100);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(92, 35);
             this.button2.TabIndex = 1;
             this.button2.Text = "Register";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(90, 46);
+            this.button1.Location = new System.Drawing.Point(53, 42);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 35);
             this.button1.TabIndex = 2;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 202);
+            this.label1.Location = new System.Drawing.Point(-2, 164);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Pre-Alpha 0.0001";
             // 
-            // Form1
+            // LogReg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 224);
+            this.ClientSize = new System.Drawing.Size(207, 180);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Name = "Form1";
+            this.Name = "LogReg";
             this.Text = "Next Gen Musical Player Log in/Register";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
