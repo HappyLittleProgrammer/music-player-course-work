@@ -49,7 +49,7 @@
             this.Controls.Add(this.webBrowser1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "VKLogIn";
-            this.Text = "VKLogIn";
+            this.Text = "Log in to VKontakte";
             this.Load += new System.EventHandler(this.VKLogIn_Load);
             this.ResumeLayout(false);
 

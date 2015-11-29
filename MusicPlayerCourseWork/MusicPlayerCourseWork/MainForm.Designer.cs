@@ -66,7 +66,7 @@
             this.textBox1.Location = new System.Drawing.Point(40, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(25, 20);
+            this.textBox1.Size = new System.Drawing.Size(14, 20);
             this.textBox1.TabIndex = 1;
             // 
             // axWindowsMediaPlayer1
@@ -82,6 +82,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.IntegralHeight = false;
             this.listBox1.Location = new System.Drawing.Point(-4, 0);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(304, 199);
@@ -90,7 +91,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(248, 3);
+            this.button1.Location = new System.Drawing.Point(257, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
@@ -111,6 +112,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(308, 223);
             this.tabControl1.TabIndex = 6;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -137,7 +139,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(179, 4);
+            this.button2.Location = new System.Drawing.Point(188, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(63, 23);
             this.button2.TabIndex = 7;
@@ -148,14 +150,15 @@
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.DropDownWidth = 120;
             this.comboBox1.Enabled = false;
             this.comboBox1.Items.AddRange(new object[] {
             "All music",
             "Selected music",
             "Selected YouTube"});
-            this.comboBox1.Location = new System.Drawing.Point(71, 6);
+            this.comboBox1.Location = new System.Drawing.Point(60, 6);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(102, 21);
+            this.comboBox1.Size = new System.Drawing.Size(120, 21);
             this.comboBox1.TabIndex = 8;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -179,11 +182,13 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(102, 20);
             this.textBox2.TabIndex = 10;
+            this.textBox2.Tag = "Enter video name!";
             // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(-2, -1);
+            this.listBox2.IntegralHeight = false;
+            this.listBox2.Location = new System.Drawing.Point(-2, 0);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(302, 199);
             this.listBox2.TabIndex = 4;
@@ -191,7 +196,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(98, 38);
+            this.label2.Location = new System.Drawing.Point(26, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 11;
@@ -214,7 +219,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Next Gen Music Player Main";
+            this.Text = "Music Player";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();

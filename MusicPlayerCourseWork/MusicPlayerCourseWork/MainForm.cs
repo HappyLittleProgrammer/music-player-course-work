@@ -62,6 +62,7 @@ namespace MusicPlayerCourseWork
             VKLogIn f5 = new VKLogIn();
             f5.Show();
             backgroundWorker1.RunWorkerAsync();
+            label2.Text = "";
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -107,6 +108,8 @@ namespace MusicPlayerCourseWork
                 axWindowsMediaPlayer1.currentPlaylist = PlayList;
                 axWindowsMediaPlayer1.Ctlcontrols.stop();
                 comboBox1.Enabled = true;
+                button1.Text = "Refresh";
+                tabControl1.SelectedIndex = 0;
             });
         }
 
@@ -152,6 +155,7 @@ namespace MusicPlayerCourseWork
 
         private void button2_Click(object sender, EventArgs e)
         {
+            label2.Text = "";
             WebClient wc = new WebClient();
             
             if(comboBox1.SelectedIndex == 1) {
@@ -219,8 +223,17 @@ namespace MusicPlayerCourseWork
 
         private void button3_Click(object sender, EventArgs e)
         {
-            backgroundWorker2.RunWorkerAsync();
+            if (textBox2.TextLength > 0) {
+                label2.Text = "";
+                backgroundWorker2.RunWorkerAsync();
+                comboBox1.SelectedIndex = 2;               
+            }
+            else
+            {
+                label2.Text = "Enter video name!!!";
+            }
 
+            tabControl1.SelectedIndex = 1;
         }
 
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
@@ -260,5 +273,22 @@ namespace MusicPlayerCourseWork
             });
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+                tabControl1.Height = tabControl1.Height + 47;
+                listBox2.Height = listBox2.Height + 47;
+            }
+
+            if (tabControl1.SelectedIndex == 0)
+            {
+                listBox2.Height = listBox2.Height - 47;
+                tabControl1.Height = tabControl1.Height - 47;
+                axWindowsMediaPlayer1.Visible = true;
+                
+            }
+        }
     }
 }
