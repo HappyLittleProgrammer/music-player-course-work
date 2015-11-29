@@ -72,9 +72,6 @@ namespace MusicPlayerCourseWork
             bool r = validate_login(user, pass);
 
             if (r){
-                LogRegMain f1 = new LogRegMain();
-                f1.Close();
-
                 Close();
 
                 MainForm f2 = new MainForm();
@@ -84,5 +81,6 @@ namespace MusicPlayerCourseWork
                 MessageBox.Show("Incorrect Login Credentials");
 
         }
+
     }
 }

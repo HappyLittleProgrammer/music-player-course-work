@@ -32,6 +32,8 @@ namespace MusicPlayerCourseWork
         {
             Login f4 = new Login();
             f4.Show();
+            Hide();
         }
+
     }
 }

@@ -62,7 +62,7 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Pre-Alpha 0.0001";
             // 
-            // LogReg
+            // LogRegMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -70,7 +70,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Name = "LogReg";
+            this.Name = "LogRegMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Next Gen Musical Player Log in/Register";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
