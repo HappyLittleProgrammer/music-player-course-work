@@ -9,6 +9,16 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Web;
 using System.Threading;
+using System.Threading.Tasks;
+
+using YoutubeExtractor;
+
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Google.Apis.Upload;
+using Google.Apis.Util.Store;
+using Google.Apis.YouTube.v3;
+using Google.Apis.YouTube.v3.Data;
 
 namespace MusicPlayerCourseWork
 {
@@ -16,6 +26,8 @@ namespace MusicPlayerCourseWork
     {
 
         public List<Audio> audioList;
+        List<string> videos = new List<string>();
+        List<string> videos_id = new List<string>();
         WMPLib.IWMPPlaylist PlayList;
         WMPLib.IWMPMedia Media;
 
@@ -75,7 +87,7 @@ namespace MusicPlayerCourseWork
 
             response.Close();
 
-            responseFromServer = HttpUtility.HtmlDecode(responseFromServer);
+            responseFromServer = System.Web.HttpUtility.HtmlDecode(responseFromServer);
 
             JToken token = JToken.Parse(responseFromServer);
             audioList = token["response"].Children().Skip(1).Select(c => c.ToObject<Audio>()).ToList();
@@ -167,6 +179,34 @@ namespace MusicPlayerCourseWork
                 }
             }
 
+            if (listBox2.SelectedIndex > -1)
+            {
+                string link = "https://www.youtube.com/watch?v=" + videos_id[listBox2.SelectedIndex];
+
+                IEnumerable<VideoInfo> videoInfos = DownloadUrlResolver.GetDownloadUrls(link);
+
+                VideoInfo video = videoInfos
+                .Where(info => info.CanExtractAudio)
+                .OrderByDescending(info => info.AudioBitrate)
+                .First();
+
+                if (video.RequiresDecryption)
+                {
+                    DownloadUrlResolver.DecryptDownloadUrl(video);
+                }
+
+                FolderBrowserDialog save = new FolderBrowserDialog();
+                if (save.ShowDialog() == DialogResult.OK)
+                {
+                    var audioDownloader = new AudioDownloader(video, Path.Combine(save.SelectedPath + "/", video.Title + video.AudioExtension));
+                    audioDownloader.DownloadProgressChanged += (sen, args) => label2.Text=(args.ProgressPercentage * 0.85).ToString() + " %";
+                    audioDownloader.AudioExtractionProgressChanged += (sen, args) => label2.Text=(85 + args.ProgressPercentage * 0.15).ToString() + " %";
+
+                    audioDownloader.Execute();
+                }
+            }
+
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -176,5 +216,49 @@ namespace MusicPlayerCourseWork
                 button2.Enabled = true;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            backgroundWorker2.RunWorkerAsync();
+
+        }
+
+        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+            {
+                ApiKey = "AIzaSyCJhHRgXy9QUwkLCbsDw7BFHsPbji6JUYI",
+                ApplicationName = GetType().ToString()
+            });
+
+            var searchListRequest = youtubeService.Search.List("snippet");
+            searchListRequest.Q = textBox2.Text;
+            searchListRequest.MaxResults = 25;
+
+            var searchListResponse =  searchListRequest.Execute();
+            videos.Clear();
+            videos_id.Clear();
+            foreach (var searchResult in searchListResponse.Items)
+            {
+                switch (searchResult.Id.Kind)
+                {
+                    case "youtube#video":
+                        
+                        videos.Add(searchResult.Snippet.Title);
+                        videos_id.Add(searchResult.Id.VideoId);
+                        break;
+                }
+            }
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                listBox2.Items.Clear();
+                for (int x = 0; x < videos.Count(); x++)
+                {
+                    listBox2.Items.Add(videos[x]);
+                }  
+            });
+        }
+
     }
 }
