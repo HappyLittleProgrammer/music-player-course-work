@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
@@ -63,13 +60,21 @@ namespace MusicPlayerCourseWork
         private void backgroundWorker1_DoWork_1(object sender, DoWorkEventArgs e)
         {
             while (!VKLogIn.auth) { Thread.Sleep(500); }
+
             WebRequest request = WebRequest.Create("https://api.vk.com/method/audio.get?owner_id=" + VKLogIn.vkuserid + "&need_user=0&access_token=" + VKLogIn.acc_token);
+
             WebResponse response = request.GetResponse();
+
             Stream dataStream = response.GetResponseStream();
+
             StreamReader reader = new StreamReader(dataStream);
+
             string responseFromServer = reader.ReadToEnd();
+
             reader.Close();
+
             response.Close();
+
             responseFromServer = HttpUtility.HtmlDecode(responseFromServer);
 
             JToken token = JToken.Parse(responseFromServer);
@@ -89,6 +94,7 @@ namespace MusicPlayerCourseWork
                 }
                 axWindowsMediaPlayer1.currentPlaylist = PlayList;
                 axWindowsMediaPlayer1.Ctlcontrols.stop();
+                comboBox1.Enabled = true;
             });
         }
 
@@ -130,7 +136,45 @@ namespace MusicPlayerCourseWork
                 }
             }
             
-        }   
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            WebClient wc = new WebClient();
             
+            if(comboBox1.SelectedIndex == 1) {
+                var SongUrl = new Uri(audioList[listBox1.SelectedIndex].url);
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter = "Music files (*.mp3)|*.mp3";
+                save.FileName = audioList[listBox1.SelectedIndex].artist + " - " + audioList[listBox1.SelectedIndex].title + ".mp3";
+                if (save.ShowDialog()==DialogResult.OK)
+                {
+                    wc.DownloadFile(SongUrl,save.FileName);
+                }
+            }
+
+            if (comboBox1.SelectedIndex == 0)
+            {
+               
+                FolderBrowserDialog save = new FolderBrowserDialog();
+                if (save.ShowDialog() == DialogResult.OK)
+                {
+                    for (int i = 0; i < audioList.Count(); i++)
+                    {
+                        var SongUrl = new Uri(audioList[i].url);
+                        wc.DownloadFile(SongUrl,save.SelectedPath + "\\" + audioList[i].artist + " - " + audioList[i].title + ".mp3");
+                    } 
+                }
+            }
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox1.SelectedIndex != -1)
+            {
+                button2.Enabled = true;
+            }
+        }
     }
 }
