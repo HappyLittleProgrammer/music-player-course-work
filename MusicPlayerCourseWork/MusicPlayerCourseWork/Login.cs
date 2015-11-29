@@ -26,7 +26,7 @@ namespace MusicPlayerCourseWork
         {
             try
             {
-                conn = "Server=localhost;Database=usersofsite;UID=root;PWD=;";
+                conn = "Server=MYSQL5013.HostBuddy.com;Database=db_9e45aa_usersm;Uid=9e45aa_usersm;Pwd=23091996;";
                 connect = new MySqlConnection(conn);
                 connect.Open();
             }

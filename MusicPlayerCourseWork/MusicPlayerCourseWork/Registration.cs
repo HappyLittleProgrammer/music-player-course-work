@@ -26,7 +26,7 @@ namespace MusicPlayerCourseWork
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string constring = "SERVER=127.0.0.1;DATABASE=usersofsite;UID=root;PASSWORD=;";
+            string constring = "Server=MYSQL5013.HostBuddy.com;Database=db_9e45aa_usersm;Uid=9e45aa_usersm;Pwd=23091996;";
             string Query = "insert into users(username, password, email) values('" + this.textBox1.Text +"', '"+this.textBox2.Text+"','"+this.textBox3.Text +"');";
 
             MySqlConnection conDataBase = new MySqlConnection(constring);
