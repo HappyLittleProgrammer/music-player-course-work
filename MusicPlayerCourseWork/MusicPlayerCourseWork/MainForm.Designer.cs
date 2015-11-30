@@ -44,7 +44,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -108,7 +107,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(15, 61);
+            this.tabControl1.Location = new System.Drawing.Point(14, 61);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(308, 223);
@@ -174,7 +173,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(236, 32);
+            this.button3.Location = new System.Drawing.Point(140, 33);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 24);
             this.button3.TabIndex = 9;
@@ -188,28 +187,21 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(128, 35);
+            this.textBox2.Location = new System.Drawing.Point(14, 35);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(102, 20);
+            this.textBox2.Size = new System.Drawing.Size(120, 20);
             this.textBox2.TabIndex = 10;
             this.textBox2.Tag = "Enter video name!";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 11;
-            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(40, 32);
+            this.button4.Location = new System.Drawing.Point(257, 33);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 4;
             this.button4.Text = "Log out VK";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainForm
@@ -218,7 +210,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 337);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.comboBox1);
@@ -229,6 +220,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Music Player";
@@ -260,7 +252,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         public System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
     }
 }

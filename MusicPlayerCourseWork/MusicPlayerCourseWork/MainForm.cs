@@ -31,7 +31,6 @@ namespace MusicPlayerCourseWork
         WMPLib.IWMPPlaylist PlayList;
         WMPLib.IWMPMedia Media;
 
-
         public MainForm()
         {
             InitializeComponent();
@@ -61,8 +60,7 @@ namespace MusicPlayerCourseWork
         {
             VKLogIn f5 = new VKLogIn();
             f5.Show();
-            backgroundWorker1.RunWorkerAsync();
-            label2.Text = "";
+            backgroundWorker1.RunWorkerAsync();       
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -110,6 +108,7 @@ namespace MusicPlayerCourseWork
                 comboBox1.Enabled = true;
                 button1.Text = "Refresh";
                 tabControl1.SelectedIndex = 0;
+                button4.Visible = true;
             });
         }
 
@@ -155,7 +154,6 @@ namespace MusicPlayerCourseWork
 
         private void button2_Click(object sender, EventArgs e)
         {
-            label2.Text = "";
             WebClient wc = new WebClient();
             
             if(comboBox1.SelectedIndex == 1) {
@@ -185,6 +183,9 @@ namespace MusicPlayerCourseWork
 
             if (listBox2.SelectedIndex > -1)
             {
+                PleaseWait pw = new PleaseWait();
+                pw.Show();
+
                 string link = "https://www.youtube.com/watch?v=" + videos_id[listBox2.SelectedIndex];
 
                 IEnumerable<VideoInfo> videoInfos = DownloadUrlResolver.GetDownloadUrls(link);
@@ -203,11 +204,15 @@ namespace MusicPlayerCourseWork
                 if (save.ShowDialog() == DialogResult.OK)
                 {
                     var audioDownloader = new AudioDownloader(video, Path.Combine(save.SelectedPath + "/", video.Title + video.AudioExtension));
-                    audioDownloader.DownloadProgressChanged += (sen, args) => label2.Text=(args.ProgressPercentage * 0.85).ToString() + " %";
-                    audioDownloader.AudioExtractionProgressChanged += (sen, args) => label2.Text=(85 + args.ProgressPercentage * 0.15).ToString() + " %";
+                    audioDownloader.DownloadProgressChanged += (sen, args) => Console.WriteLine(args.ProgressPercentage * 0.85);
+                    audioDownloader.AudioExtractionProgressChanged += (sen, args) => Console.WriteLine(85 + args.ProgressPercentage * 0.15);
 
                     audioDownloader.Execute();
                 }
+
+                pw.Close();
+                MessageBox.Show("Done!","Download done!",MessageBoxButtons.OK);
+
             }
 
 
@@ -224,25 +229,23 @@ namespace MusicPlayerCourseWork
         private void button3_Click(object sender, EventArgs e)
         {
             if (textBox2.TextLength > 0) {
-                label2.Text = "";
                 backgroundWorker2.RunWorkerAsync();
-                comboBox1.SelectedIndex = 2;               
+                comboBox1.SelectedIndex = 2;
+                tabControl1.SelectedIndex = 1;
             }
             else
             {
-                label2.Text = "Enter video name!!!";
-            }
-
-            tabControl1.SelectedIndex = 1;
+                textBox2.Text = "Enter video name here!";
+            }      
         }
 
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
-                /*ApiKey = "AIzaSyCJhHRgXy9QUwkLCbsDw7BFHsPbji6JUYI",*/ /*Home*/
+                ApiKey = "AIzaSyCJhHRgXy9QUwkLCbsDw7BFHsPbji6JUYI", /*Home*/
                /*ApiKey = "AIzaSyB0g_U0tDGxEqUe3NgI8TGmOMnsHZPPO-I",*/  /*Rvt*/
-                ApiKey ="AIzaSyC_0ABufgyBSJ9svTL2kquzxPeqDROXYgA",      /*AndroidHotspot*/
+               /* ApiKey ="AIzaSyC_0ABufgyBSJ9svTL2kquzxPeqDROXYgA",*/  /*AndroidHotspot*/
                 ApplicationName = GetType().ToString()
             });
 
@@ -295,9 +298,13 @@ namespace MusicPlayerCourseWork
 
         private void button4_Click(object sender, EventArgs e)
         {
+            button1.Text = "Log in VK";
             VkLogOut vlo = new VkLogOut();
             vlo.Show();
             
         }
+
+
+
     }
 }

@@ -33,6 +33,9 @@ namespace MusicPlayerCourseWork
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.ScrollBarsEnabled = false;
+            webBrowser1.Document.Window.ScrollTo(190, 160);
             try
             {
                 string url = webBrowser1.Url.ToString();

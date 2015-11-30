@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,13 +22,18 @@ namespace MusicPlayerCourseWork
 
         private void VkLogOut_Load(object sender, EventArgs e)
         {
-           var myFilter = new Windows.Web.Http.FiltersHttpBaseProtocolFilter();
-           var cookieManager = myFilter.CookieManager;
-           var myCookieJar = cookieManager.GetCookies(new Uri("https://oauth.vk.com"));
-           foreach (var cookie in myCookieJar)
-           {
-               cookieManager.DeleteCookie(cookie);
-           }
+            Process p;
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
+
+            p = new Process();
+            p.StartInfo = psi;
+            p = Process.Start("RunDll32.exe", "InetCpl.cpl,ClearMyTracksByProcess 258", null, null, null);
+            this.Close();
         }
     }
 }
