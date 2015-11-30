@@ -38,13 +38,14 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -136,6 +137,15 @@
             this.tabPage2.Text = "YouTubeMusic";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.IntegralHeight = false;
+            this.listBox2.Location = new System.Drawing.Point(-2, 0);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(302, 199);
+            this.listBox2.TabIndex = 4;
+            // 
             // button2
             // 
             this.button2.Enabled = false;
@@ -184,15 +194,6 @@
             this.textBox2.TabIndex = 10;
             this.textBox2.Tag = "Enter video name!";
             // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.IntegralHeight = false;
-            this.listBox2.Location = new System.Drawing.Point(-2, 0);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(302, 199);
-            this.listBox2.TabIndex = 4;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -201,11 +202,22 @@
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 11;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(40, 32);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Log out VK";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 337);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button3);
@@ -249,5 +261,6 @@
         public System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button4;
     }
 }

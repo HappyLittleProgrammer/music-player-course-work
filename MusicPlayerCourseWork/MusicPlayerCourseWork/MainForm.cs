@@ -240,7 +240,9 @@ namespace MusicPlayerCourseWork
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
-                ApiKey = "AIzaSyCJhHRgXy9QUwkLCbsDw7BFHsPbji6JUYI",
+                /*ApiKey = "AIzaSyCJhHRgXy9QUwkLCbsDw7BFHsPbji6JUYI",*/ /*Home*/
+               /*ApiKey = "AIzaSyB0g_U0tDGxEqUe3NgI8TGmOMnsHZPPO-I",*/  /*Rvt*/
+                ApiKey ="AIzaSyC_0ABufgyBSJ9svTL2kquzxPeqDROXYgA",      /*AndroidHotspot*/
                 ApplicationName = GetType().ToString()
             });
 
@@ -289,6 +291,13 @@ namespace MusicPlayerCourseWork
                 axWindowsMediaPlayer1.Visible = true;
                 
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            VkLogOut vlo = new VkLogOut();
+            vlo.Show();
+            
         }
     }
 }
