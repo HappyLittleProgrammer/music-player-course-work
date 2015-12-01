@@ -65,7 +65,8 @@ namespace MusicPlayerCourseWork
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            LogRegMain lgm = new LogRegMain();
+            lgm.Close();
         }
 
         private void backgroundWorker1_DoWork_1(object sender, DoWorkEventArgs e)
@@ -109,6 +110,7 @@ namespace MusicPlayerCourseWork
                 button1.Text = "Refresh";
                 tabControl1.SelectedIndex = 0;
                 button4.Visible = true;
+                listBox1.Enabled = true;
             });
         }
 
@@ -299,6 +301,10 @@ namespace MusicPlayerCourseWork
         private void button4_Click(object sender, EventArgs e)
         {
             button1.Text = "Log in VK";
+            listBox1.Items.Clear();
+            comboBox1.Enabled = false;
+            comboBox1.SelectedIndex = -1;
+            button4.Hide();
             VkLogOut vlo = new VkLogOut();
             vlo.Show();
             
