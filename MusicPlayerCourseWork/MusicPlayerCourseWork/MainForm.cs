@@ -167,6 +167,7 @@ namespace MusicPlayerCourseWork
                 {
                     wc.DownloadFile(SongUrl,save.FileName);
                 }
+                MessageBox.Show("Done!", "Download done!", MessageBoxButtons.OK);
             }
 
             if (comboBox1.SelectedIndex == 0)
@@ -181,6 +182,7 @@ namespace MusicPlayerCourseWork
                         wc.DownloadFile(SongUrl,save.SelectedPath + "\\" + audioList[i].artist + " - " + audioList[i].title + ".mp3");
                     } 
                 }
+                MessageBox.Show("Done!", "Download done!", MessageBoxButtons.OK);
             }
 
             if (listBox2.SelectedIndex > -1)
